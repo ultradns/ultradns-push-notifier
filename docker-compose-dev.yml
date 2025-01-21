@@ -1,0 +1,20 @@
+services:
+
+  udns-push-notifier-backend:
+    build: ./backend
+    ports:
+      - "8087:8087"
+    volumes:
+      - ./backend:/app
+      - ./backend/data:/app/data
+    env_file:
+      - .env
+
+  udns-push-notifier-frontend:
+    build: ./frontend
+    ports:
+      - "3000:80"
+    volumes:
+      - ./frontend:/app
+    depends_on:
+      - udns-push-notifier-backend

@@ -1,0 +1,39 @@
+services:
+
+  udns-push-notifier-backend:
+    image: ultradns/udns-push-notifier-backend:latest
+    ports:
+      - "8087:8087"
+    volumes:
+      - ./data:/app/data
+    env_file:
+      - .env
+
+  udns-push-notifier-frontend:
+    image: ultradns/udns-push-notifier-frontend:latest
+    ports:
+      - "3000:80"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.web.rule=Host(`${WEB_HOST}`)"
+      - "traefik.http.routers.web.entrypoints=websecure"
+      - "traefik.http.routers.web.tls=true"
+      - "traefik.http.routers.web.tls.certresolver=myresolver"
+    depends_on:
+      - udns-push-notifier-backend
+      - traefik
+
+  traefik:
+    image: traefik:v2.10
+    command:
+      - "--providers.docker=true"
+      - "--providers.docker.exposedbydefault=false"
+      - "--entrypoints.websecure.address=:443"
+      - "--certificatesresolvers.myresolver.acme.tlschallenge=true"
+      - "--certificatesresolvers.myresolver.acme.email=${ACME_EMAIL}"
+      - "--certificatesresolvers.myresolver.acme.storage=/letsencrypt/acme.json"
+    ports:
+      - 443:443
+    volumes:
+      - ./data/certificates:/letsencrypt
+      - /var/run/docker.sock:/var/run/docker.sock:ro

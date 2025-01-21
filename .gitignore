@@ -1,0 +1,10 @@
+.DS_Store
+.idea/**
+*.kate-swp
+venv/
+sandbox/
+**/__pycache__/
+**/data/
+.env
+**/lego/
+*.old
