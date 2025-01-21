@@ -86,7 +86,7 @@ root/
    - Wait for UltraDNS to send test telemetry to verify the endpoint.
 3. View and manage configured webhooks in the dashboard.
 
-See [./frontend/README.md](frontend/README.md) for a visual demonstration.
+See [frontend/README.md](./frontend/README.md) for a visual demonstration.
 
 ## Contributing
 
