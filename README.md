@@ -1,6 +1,6 @@
 # ultradns-push-notifier
 
-This is a web-based application designed to configure push notification endpoints for UltraDNS. The app uses a **Flask backend** for managing API requests and a **React frontend** to provide a clean and user-friendly interface. It supports setting up notification platforms such as Microsoft Teams (currently implemented) and will include Slack and Discord in future updates.
+This is a web-based application designed to configure push notification endpoints for UltraDNS. The app uses a **Flask backend** for managing API requests and a **React frontend** to provide a clean and user-friendly interface. It supports setting up notification platforms such as Microsoft Teams and Slack and will include Discord plus others in future updates.
 
 ## Features
 
